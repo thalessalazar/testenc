@@ -1,0 +1,30 @@
+<div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">Desafio NC </div>
+    <div class="list-group ">
+
+        <%if(menu.menu1 === true) {%>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Financeiro</a>
+        <%}%>
+
+        <%if(menu.menu2 === true) {%>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Vendas</a>
+        <%}%>
+
+        <%if(menu.menu3 === true) {%>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Relatórios</a>
+        <%}%>
+
+        <%if(menu.menu4 === true) {%>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Estoque</a>
+        <%}%>
+
+        <%if(menu.menu5 === true) {%>
+        <a href="/user" class="list-group-item list-group-item-action bg-light">Usuários</a>
+        <%}%>
+        
+    </div>
+
+    <div >
+        <a href="/logout"> Logout</a>
+    </div>
+</div>

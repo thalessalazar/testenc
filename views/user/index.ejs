@@ -1,0 +1,65 @@
+<%- include('../partials/header.ejs')%>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <%- include('../partials/sidebar.ejs') %>
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <h1 class="mt-4">USUARIO</h1>
+            <a href="/admin/user/save" class="btn btn-primary btn-small">Novo Usuario</a>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Login</th>
+                        <th>Acesso a</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%users.forEach(user => { %>
+                    <tr>
+                        <td><%=user.id%></td>
+                        <td><%=user.name%></td>
+                        <td><%=user.login%></td>
+                        <%
+                            var menuString = "";
+                            if(user.menu1 == 1) menuString += "Financeiro-";
+                            if(user.menu2 == 1) menuString += "Vendas-";
+                            if(user.menu3 == 1) menuString += "Relatórios-";
+                            if(user.menu4 == 1) menuString += "Estoque-";
+                            if(user.menu5 == 1) menuString += "Usuarios";
+                        %>
+                        <td><%=menuString%></td>
+
+                        <td>
+                            <a href="/user/edit/<%=user.id%>" class="btn btn-warning">Editar</a>
+
+                            <form action="/user/delete" method="POST" style="display: inline;"
+                                onsubmit="confirmDelete(event, this)">
+                                <input type="hidden" name="id" value="<%=user.id%>">
+                                <button class="btn btn-danger">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <%})%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function confirmDelete(event, form) {
+        event.preventDefault();
+        let userDecision = confirm('Você quer mesmo deletar esta categoria');
+        if (userDecision) {
+            form.submit();
+        }
+    }
+</script>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,22 @@
+body {
+    font-family: "Poppins", sans-serif;
+    height: 30vh;
+  }
+
+.login-form {
+    width: 340px;
+      margin: 25vh auto;
+  }
+    .login-form form {
+      margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
