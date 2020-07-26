@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const databaseConnection = require('./database/database');
 const expressSession = require('express-session');
+const bcrypt = require('bcrypt');
 
 const userController = require('./controller/userController');
 const user = require('./model/UserModel');
@@ -34,6 +35,23 @@ databaseConnection
     })
 
 app.use('/', userController);
+
+app.get('/createadmin', (req, res) => {
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync('123', salt);
+    user.create({
+        name: 'Admin',
+        login: 'admin',
+        password: hash.toString(),
+        menu1: true,
+        menu2: true,
+        menu3: true,
+        menu4: true,
+        menu5: true
+    });
+
+    res.redirect('/');
+});
 
 app.get('/', (req, res) => {
     if (req.session.user) {
